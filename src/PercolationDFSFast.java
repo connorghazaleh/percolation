@@ -8,7 +8,7 @@ public class PercolationDFSFast extends PercolationDFS{
 	@Override
 	public boolean isOpen(int row, int col) {
 		
-		if (row > myGrid.length || col > myGrid.length) {
+		if ((row > myGrid.length || row < 0) || (col > myGrid.length || col < 0)) {
 			throw new IndexOutOfBoundsException();
 		}
 		
