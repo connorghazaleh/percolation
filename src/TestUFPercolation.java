@@ -5,7 +5,7 @@ public class TestUFPercolation {
 	
 	public IPercolate getPercolator(int size) {
 		IUnionFind finder = new QuickFind();
-		IPercolate perc = null; // new PercolationUF(size,finder);
+		IPercolate perc = new PercolationUF(size,finder);
 		return perc;
 	}
 	

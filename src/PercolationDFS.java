@@ -41,6 +41,7 @@ public class PercolationDFS implements IPercolate {
 			myGrid[row][col]	 = FULL;
 		}
 		updateOnOpen(row,col);
+		
 	}
 
 	public boolean isOpen(int row, int col) {

@@ -5,7 +5,7 @@ import org.junit.Test;
 public class TestDFSPercolation {
 	
 	public IPercolate getDFSPercolater(int size) {
-		return new PercolationDFS(size);
+		return new PercolationDFSFast(size);
 	}
 	
 	/**
@@ -27,9 +27,14 @@ public class TestDFSPercolation {
 	 */
 	@Test(timeout = 20000)
 	public void testDFSIsFull() {
-		IPercolate dfs = getDFSPercolater(10); 
+		//System.out.println("good1");
+		IPercolate dfs = getDFSPercolater(10);
+		
+		//System.out.println("good2");
 		for (int i = 0; i < 10; i++)
+			//System.out.println("good3");
 			for (int j = 0; j < 10; j++) {
+				//System.out.println("good4");
 				dfs.open(i, j);
 				assertTrue("This test checks if PercolationDFS' isFull method " + "works correctly", dfs.isFull(i, j));
 			}
