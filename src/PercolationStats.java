@@ -65,6 +65,8 @@ public class PercolationStats {
 		System.out.println("Variance: " + Test.var);
 		System.out.println("Number of tests: " + Test.num);
 		
+		
+		
 	}
 	
 	
@@ -75,7 +77,7 @@ public class PercolationStats {
     }
 	
 	public double mean() {
-        return mean(pvals);
+        return mean;
     }
 	
 	private static double sum(double[] a) {
@@ -91,7 +93,7 @@ public class PercolationStats {
     }
 	
 	public double stddev() {
-        return Math.sqrt(var(pvals));
+        return stddev;
     }
 	
 	
