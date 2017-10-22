@@ -17,10 +17,11 @@ public class PercolationStats {
 	public double stddev = 0;
 	public int num = 0;
 	public double var = 0;
+	public double pvals[];
 	
 	public PercolationStats(int N, int T) {
 		ArrayList<Integer[]> sites = new ArrayList<Integer[]>();
-		double [] pvals = new double[T]; 
+		pvals = new double[T]; 
 		for (int i = 0; i< N; i++) {
 			for (int k = 0; k< N; k++) {
 				Integer[] point = new Integer[2];
@@ -58,8 +59,7 @@ public class PercolationStats {
 	
 	
 	public static void main(String[] args) {
-		PercolationStats Test = new PercolationStats(50,50
-				);
+		PercolationStats Test = new PercolationStats(50,2);
 		System.out.println("Mean: " + Test.mean);
 		System.out.println("Standard Deviation: " + Test.stddev);
 		System.out.println("Variance: " + Test.var);
@@ -74,6 +74,10 @@ public class PercolationStats {
         return sum / a.length;
     }
 	
+	public double mean() {
+        return mean(pvals);
+    }
+	
 	private static double sum(double[] a) {
         double sum = 0.0;
         for (int i = 0; i < a.length; i++) {
@@ -85,6 +89,12 @@ public class PercolationStats {
 	public static double stddev(double[] a) {
         return Math.sqrt(var(a));
     }
+	
+	public double stddev() {
+        return Math.sqrt(var(pvals));
+    }
+	
+	
 	public static double var(double[] a) {
         if (a.length == 0) return Double.NaN;
         double avg = mean(a);
