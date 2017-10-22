@@ -64,6 +64,8 @@ public class PercolationStats {
 		System.out.println("Standard Deviation: " + Test.stddev);
 		System.out.println("Variance: " + Test.var);
 		System.out.println("Number of tests: " + Test.num);
+		System.out.println("Confidence High: " + Test.confidenceHigh());
+		System.out.println("Confidence Low: " + Test.confidenceLow());
 		
 		
 	}
@@ -108,13 +110,13 @@ public class PercolationStats {
 	
 	public double confidenceLow() {
 		
-		return (this.mean-1.96*var)/Math.sqrt(num);
+		return (mean-1.96*stddev)/Math.sqrt(num);
 		
 	}
 	
 	public double confidenceHigh() {
 		
-		return (this.mean+1.96*var)/Math.sqrt(num);
+		return (mean+1.96*stddev)/Math.sqrt(num);
 		
 	}
 	

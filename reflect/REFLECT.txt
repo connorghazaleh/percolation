@@ -4,4 +4,5 @@ Hours Spent: [8.0]
 Consulted With: [enw12, vrp6, mc497]
 Resources Used: [NONE]
 Difficulty level: [5]
-Impressions: [Your answer here]
+Impressions: [Percolation helped me understand more about the union find method and taught me a new way to 
+			organize data.]
