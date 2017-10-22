@@ -30,22 +30,22 @@ public class PercolationStats {
 				sites.add(point);
 			}
 		}
-		Collections.shuffle(sites,ourRandom);
-		System.out.println("ourRandom: " + ourRandom);
-		IUnionFind finder = new QuickFind();
-		IPercolate sim = new PercolationUF(N,finder);
-		int j = 0;
-		double psum = 0;
+		
 		for (int t = 0; t < T; t++) {
+			Collections.shuffle(sites,ourRandom);
+			System.out.println("ourRandom: " + ourRandom);
+			IUnionFind finder = new QuickFind();
+			IPercolate sim = new PercolationUF(N,finder);
+			int j = 0;
+			double psum = 0;
 			while (!sim.percolates()) {
 				Integer[] temp = sites.get(j);
 				int a = temp[0];
 				int b = temp[1];
 				sim.open(a,b);
 				j++;
-				
+				pvals[t] = (double)sim.numberOfOpenSites()/(double)(N*N);		
 			}
-			pvals[t] = (double)sim.numberOfOpenSites()/(double)(N*N);		
 		}
 		for (int z = 0; z < pvals.length; z++) {
 			System.out.println(pvals[z]);
@@ -59,12 +59,11 @@ public class PercolationStats {
 	
 	
 	public static void main(String[] args) {
-		PercolationStats Test = new PercolationStats(50,2);
+		PercolationStats Test = new PercolationStats(50,6);
 		System.out.println("Mean: " + Test.mean);
 		System.out.println("Standard Deviation: " + Test.stddev);
 		System.out.println("Variance: " + Test.var);
 		System.out.println("Number of tests: " + Test.num);
-		
 		
 		
 	}
