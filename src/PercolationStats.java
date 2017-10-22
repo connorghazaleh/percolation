@@ -20,6 +20,9 @@ public class PercolationStats {
 	public double pvals[];
 	
 	public PercolationStats(int N, int T) {
+		if (N<1 || T<1) {
+			throw new IllegalArgumentException();
+		}
 		ArrayList<Integer[]> sites = new ArrayList<Integer[]>();
 		pvals = new double[T]; 
 		for (int i = 0; i< N; i++) {
