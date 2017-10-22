@@ -36,7 +36,6 @@ public class PercolationStats {
 		
 		for (int t = 0; t < T; t++) {
 			Collections.shuffle(sites,ourRandom);
-			System.out.println("ourRandom: " + ourRandom);
 			IUnionFind finder = new QuickFind();
 			IPercolate sim = new PercolationUF(N,finder);
 			int j = 0;
@@ -49,9 +48,6 @@ public class PercolationStats {
 				j++;
 				pvals[t] = (double)sim.numberOfOpenSites()/(double)(N*N);		
 			}
-		}
-		for (int z = 0; z < pvals.length; z++) {
-			System.out.println(pvals[z]);
 		}
 		mean = mean(pvals);
 		stddev = stddev(pvals);
