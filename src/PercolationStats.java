@@ -18,6 +18,8 @@ public class PercolationStats {
 	public int num = 0;
 	public double var = 0;
 	public double pvals[];
+	public double confidenceLow;
+	public double confidenceHigh;
 	
 	public PercolationStats(int N, int T) {
 		if (N<1 || T<1) {
@@ -53,6 +55,9 @@ public class PercolationStats {
 		stddev = stddev(pvals);
 		var = var(pvals);
 		num = T;
+		confidenceLow = confidenceLow();
+		confidenceHigh = confidenceHigh();
+		
 		
 	}
 	
@@ -65,7 +70,7 @@ public class PercolationStats {
 		System.out.println("Number of tests: " + Test.num);
 		System.out.println("Confidence High: " + Test.confidenceHigh());
 		System.out.println("Confidence Low: " + Test.confidenceLow());
-		System.out.println("Test C.L.: " + (Test.mean-1.96*Test.stddev)/Math.sqrt(10));
+		System.out.println("Test C.L.: " + (Test.mean()-1.96*Test.stddev())/Math.sqrt(10));
 		
 	}
 	
