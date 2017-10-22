@@ -11,7 +11,7 @@ import java.util.*;
  */
 
 public class PercolationStats {
-	public static int RANDOM_SEED = 1234;
+	public static int RANDOM_SEED = 5678;
 	public static Random ourRandom = new Random(RANDOM_SEED);
 	public double mean = 0;
 	public double stddev = 0;
@@ -58,14 +58,14 @@ public class PercolationStats {
 	
 	
 	public static void main(String[] args) {
-		PercolationStats Test = new PercolationStats(50,6);
+		PercolationStats Test = new PercolationStats(20,10);
 		System.out.println("Mean: " + Test.mean);
 		System.out.println("Standard Deviation: " + Test.stddev);
 		System.out.println("Variance: " + Test.var);
 		System.out.println("Number of tests: " + Test.num);
 		System.out.println("Confidence High: " + Test.confidenceHigh());
 		System.out.println("Confidence Low: " + Test.confidenceLow());
-		
+		System.out.println("Test C.L.: " + (Test.mean-1.96*Test.stddev)/Math.sqrt(10));
 		
 	}
 	
