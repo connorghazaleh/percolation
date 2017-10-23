@@ -22,9 +22,13 @@ public class PercolationStats {
 	public double confidenceHigh;
 	
 	public PercolationStats(int N, int T) {
+		//if the size of the gird is < 1 or
+		//if the number of tests is < 1, throw an error
 		if (N<1 || T<1) {
 			throw new IllegalArgumentException();
 		}
+		
+		//initializes new arraylist (containing coordinates of all sites in the grid) and list of p values
 		ArrayList<Integer[]> sites = new ArrayList<Integer[]>();
 		pvals = new double[T]; 
 		for (int i = 0; i< N; i++) {
@@ -36,12 +40,14 @@ public class PercolationStats {
 			}
 		}
 		
+		//shuffles order of arraylist, creates new percolation object...
 		for (int t = 0; t < T; t++) {
 			Collections.shuffle(sites,ourRandom);
 			IUnionFind finder = new QuickFind();
 			IPercolate sim = new PercolationUF(N,finder);
 			int j = 0;
 			double psum = 0;
+			//... and keeps openening sites until the grid percolates, at which point the ratio of open sites to total sites is recorded and stores in an array
 			while (!sim.percolates()) {
 				Integer[] temp = sites.get(j);
 				int a = temp[0];
@@ -51,6 +57,8 @@ public class PercolationStats {
 				pvals[t] = (double)sim.numberOfOpenSites()/(double)(N*N);		
 			}
 		}
+		
+		//generates all important statistical values using peripheral methods
 		mean = mean(pvals);
 		stddev = stddev(pvals);
 		var = var(pvals);
@@ -76,16 +84,19 @@ public class PercolationStats {
 	
 	
 	public static double mean (double[] a) {
+		//finds average of an array of doubles
         if (a.length == 0) return Double.NaN;
         double sum = sum(a);
         return sum / a.length;
     }
 	
 	public double mean() {
+		//returns average of all p values
         return mean;
     }
 	
 	private static double sum(double[] a) {
+		//returns sum of an array of doubles
         double sum = 0.0;
         for (int i = 0; i < a.length; i++) {
             sum += a[i];
@@ -94,15 +105,18 @@ public class PercolationStats {
     }
 	
 	public static double stddev(double[] a) {
+		//returns the standard deviation of an array of doubles
         return Math.sqrt(var(a));
     }
 	
 	public double stddev() {
+		//returns standard deviation of all p values
         return stddev;
     }
 	
 	
 	public static double var(double[] a) {
+		// returns variance of an array of doubles
         if (a.length == 0) return Double.NaN;
         double avg = mean(a);
         double sum = 0.0;
@@ -113,13 +127,13 @@ public class PercolationStats {
     }
 	
 	public double confidenceLow() {
-		
+		//lower bound of collection of 95% of values
 		return this.mean-(1.96*this.stddev)/Math.sqrt(this.num);
 		
 	}
 	
 	public double confidenceHigh() {
-		
+		//upper bound of collection of 95% of values
 		return this.mean+(1.96*this.stddev)/Math.sqrt(this.num);
 		
 	}
