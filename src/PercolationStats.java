@@ -43,7 +43,7 @@ public class PercolationStats {
 		//shuffles order of arraylist, creates new percolation object...
 		for (int t = 0; t < T; t++) {
 			Collections.shuffle(sites,ourRandom);
-			IUnionFind finder = new QuickUWPC();
+			IUnionFind finder = new QuickFind();
 			IPercolate sim = new PercolationUF(N,finder);
 			//IPercolate sim = new PercolationDFSFast(N);
 			int j = 0;
