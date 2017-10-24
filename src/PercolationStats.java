@@ -43,8 +43,9 @@ public class PercolationStats {
 		//shuffles order of arraylist, creates new percolation object...
 		for (int t = 0; t < T; t++) {
 			Collections.shuffle(sites,ourRandom);
-			IUnionFind finder = new QuickFind();
+			IUnionFind finder = new QuickUWPC();
 			IPercolate sim = new PercolationUF(N,finder);
+			//IPercolate sim = new PercolationDFSFast(N);
 			int j = 0;
 			double psum = 0;
 			//... and keeps openening sites until the grid percolates, at which point the ratio of open sites to total sites is recorded and stores in an array
@@ -71,14 +72,36 @@ public class PercolationStats {
 	
 	
 	public static void main(String[] args) {
-		PercolationStats Test = new PercolationStats(20,10);
-		System.out.println("Mean: " + Test.mean);
-		System.out.println("Standard Deviation: " + Test.stddev);
-		System.out.println("Variance: " + Test.var);
-		System.out.println("Number of tests: " + Test.num);
-		System.out.println("Confidence High: " + Test.confidenceHigh());
-		System.out.println("Confidence Low: " + Test.confidenceLow());
-		System.out.println("Test C.L.: " + (Test.mean()-1.96*Test.stddev())/Math.sqrt(10));
+		
+		int size = 400;
+		int simNum = 100;
+//		double ttime = 0;
+//		double mmean = 0;
+//		for (int t = 0; t<5; t++) {
+//			double start =  System.nanoTime();
+//			PercolationStats Test = new PercolationStats(size,simNum);
+//			double end =  System.nanoTime();
+//			double time =  (end-start)/1e9;
+//			mmean += Test.mean();
+//			ttime += time;
+//			System.out.printf("mean: %1.4f, time: %1.4f\n",Test.mean(),time);
+//		}
+//		System.out.printf("Overall mean: %1.4f, Overall time: %1.4f\n",mmean/5,ttime/5);
+		
+		double start =  System.nanoTime();
+		PercolationStats ps = new PercolationStats(size,simNum);
+		double end =  System.nanoTime();
+		double time =  (end-start)/1e9;
+		System.out.printf("mean: %1.4f, time: %1.4f\n",ps.mean(),time);
+
+
+//		System.out.println("Mean: " + Test.mean);
+//		System.out.println("Standard Deviation: " + Test.stddev);
+//		System.out.println("Variance: " + Test.var);
+//		System.out.println("Number of tests: " + Test.num);
+//		System.out.println("Confidence High: " + Test.confidenceHigh());
+//		System.out.println("Confidence Low: " + Test.confidenceLow());
+//		System.out.println("Test C.L.: " + (Test.mean()-1.96*Test.stddev())/Math.sqrt(10));
 		
 	}
 	
